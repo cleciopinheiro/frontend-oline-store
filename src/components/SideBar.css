@@ -1,0 +1,10 @@
+.side-bar {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  padding: 16px;
+  width: 20vw;
+}
