@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import SideBar from '../components/SideBar'; 
 
 class Home extends Component {
   render() {
@@ -15,6 +16,8 @@ class Home extends Component {
 
           </button>
         </Link>
+        <p>Categorias</p>
+        <SideBar />
       </div>
     );
   }
