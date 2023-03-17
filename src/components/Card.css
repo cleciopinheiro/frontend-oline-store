@@ -1,0 +1,15 @@
+.cards {
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding-inline: 15px;
+  width: 200px;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
