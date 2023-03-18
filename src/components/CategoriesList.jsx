@@ -5,7 +5,7 @@ import '../style/CategoriesList.css';
 
 export default class CategoriesList extends Component {
   render() {
-    const { categoriesList } = this.props;
+    const { categoriesList, onClick } = this.props;
     return (
       <div className="categories__container">
         <h3>Categorias</h3>
@@ -13,7 +13,14 @@ export default class CategoriesList extends Component {
           {
             categoriesList.map((category) => (
               <li key={ category.id }>
-                <button type="button" data-testid="category">
+                <button
+                  value={ category.id }
+                  onClick={ onClick }
+                  name="categoryInput"
+                  id="categoryInput"
+                  type="button"
+                  data-testid="category"
+                >
                   {category.name}
                 </button>
               </li>
@@ -32,4 +39,5 @@ CategoriesList.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

@@ -23,9 +23,21 @@ export default class Home extends React.Component {
     });
   }
 
-  searchProducts = async () => {
-    const { categoryInput, searchInput } = this.state;
-    const data = await getProductsFromCategoryAndQuery(categoryInput, searchInput);
+  searchProductsByName = async () => {
+    const { searchInput } = this.state;
+    const data = await getProductsFromCategoryAndQuery('', searchInput);
+    this.setState({
+      productsList: data.results,
+    });
+  };
+
+  searchProductsByCategory = async ({ target }) => {
+    const { value } = target;
+    const { categoryInput } = this.state;
+    this.setState({
+      categoryInput: value,
+    });
+    const data = await getProductsFromCategoryAndQuery(categoryInput, '');
     this.setState({
       productsList: data.results,
     });
@@ -61,12 +73,14 @@ export default class Home extends React.Component {
           <CategoriesList
             categoriesList={ categoriesList }
             categoryInput={ categoryInput }
+            handleChange={ this.handleChange }
+            onClick={ this.searchProductsByCategory }
           />
           <div className="search-and-cards__container">
             <Search
               searchInput={ searchInput }
               handleChange={ this.handleChange }
-              searchClick={ this.searchProducts }
+              onClick={ this.searchProductsByName }
             />
             <div className="products-cards__container">
               <ProductCard productsList={ productsList } />

@@ -5,7 +5,7 @@ import '../style/Search.css';
 
 export default class Search extends Component {
   render() {
-    const { searchInput, handleChange, searchClick } = this.props;
+    const { searchInput, handleChange, onClick } = this.props;
     return (
       <div className="search__container">
         <div className="search-bar">
@@ -20,7 +20,7 @@ export default class Search extends Component {
             data-testid="query-input"
           />
           <button
-            onClick={ searchClick }
+            onClick={ onClick }
             name="searchClick"
             id="searchClick"
             type="button"
@@ -38,5 +38,5 @@ export default class Search extends Component {
 Search.propTypes = {
   searchInput: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  searchClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

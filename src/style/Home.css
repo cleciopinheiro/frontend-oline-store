@@ -1,6 +1,5 @@
 .header {
   align-items: center;
-  border-bottom: 1px solid black;
   color: black;
   display: flex;
   flex-direction: column;
@@ -30,7 +29,6 @@
 
 .search-and-cards__container {
   align-items: center;
-  border: 4px solid lime;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,6 +42,5 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  border: 5px solid purple;
   padding: 10px;
 }
