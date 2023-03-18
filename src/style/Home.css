@@ -9,6 +9,8 @@
   color: black;
   font-size: 1.2rem;
   position: relative;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
 }
 
 .header button {
@@ -22,4 +24,10 @@
   background-color: black;
   font-weight: 600;
   cursor: pointer;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-items: flex-start;
 }

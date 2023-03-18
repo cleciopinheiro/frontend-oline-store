@@ -1,0 +1,25 @@
+.categories__container {
+  padding-left: 20px;
+  width: 16dvw;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.categories__container ul {
+  list-style: none;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.categories__container ul li {
+  padding-block: 4px;
+}
+
+.categories__container ul li button {
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}

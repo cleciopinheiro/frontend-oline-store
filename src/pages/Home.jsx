@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Search from '../components/SearchProducts';
+import Search from '../components/Search';
+import CategoriesList from '../components/CategoriesList';
 
 import '../style/Home.css';
 
@@ -20,6 +21,7 @@ export default class Home extends React.Component {
           </Link>
         </div>
         <Search />
+        <CategoriesList />
       </div>
     );
   }
