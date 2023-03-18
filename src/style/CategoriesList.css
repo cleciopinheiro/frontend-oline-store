@@ -1,17 +1,17 @@
 .categories__container {
+  border: 1px solid blue;
   padding-left: 20px;
-  width: 16dvw;
-  margin-top: 10px;
   text-align: left;
+  min-width: 20%;
 }
 
 .categories__container ul {
-  list-style: none;
-  padding-top: 12px;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  list-style: none;
+  padding-top: 12px;
 }
 
 .categories__container ul li {
@@ -19,7 +19,7 @@
 }
 
 .categories__container ul li button {
-  padding: 2px 6px;
-  font-size: 0.75rem;
   cursor: pointer;
+  font-size: 0.75rem;
+  padding: 2px 6px;
 }

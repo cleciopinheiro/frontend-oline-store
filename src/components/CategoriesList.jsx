@@ -1,22 +1,11 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import PropTypes from 'prop-types';
 
 import '../style/CategoriesList.css';
 
 export default class CategoriesList extends Component {
-  state = {
-    categoriesList: [],
-  };
-
-  async componentDidMount() {
-    const data = await getCategories();
-    this.setState({
-      categoriesList: data,
-    });
-  }
-
   render() {
-    const { categoriesList } = this.state;
+    const { categoriesList } = this.props;
     return (
       <div className="categories__container">
         <h3>Categorias</h3>
@@ -35,3 +24,12 @@ export default class CategoriesList extends Component {
     );
   }
 }
+
+CategoriesList.propTypes = {
+  categoriesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};

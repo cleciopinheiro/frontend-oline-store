@@ -1,7 +1,22 @@
+.search__container {
+  border: 3px solid red;
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
 .search-input {
-  width: 50%;
-  height: 30px;
-  border-radius: 50px;
   border: 1px solid black;
+  height: 31px;
   padding-left: 10px;
+  width: 50%;
+}
+
+.search-btn {
+  padding: 6px 12px;
 }
