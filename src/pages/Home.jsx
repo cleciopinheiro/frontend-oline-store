@@ -55,7 +55,7 @@ export default class Home extends React.Component {
       categoriesList,
       searchInput,
       productsList,
-      categoryInput } = this.state;
+    } = this.state;
     return (
       <div>
         <div className="header">
@@ -72,8 +72,6 @@ export default class Home extends React.Component {
         <div className="main__container">
           <CategoriesList
             categoriesList={ categoriesList }
-            categoryInput={ categoryInput }
-            handleChange={ this.handleChange }
             onClick={ this.searchProductsByCategory }
           />
           <div className="search-and-cards__container">
