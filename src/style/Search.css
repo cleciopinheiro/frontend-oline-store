@@ -3,10 +3,10 @@
 }
 
 .search-bar {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   gap: 6px;
+  justify-content: center;
 }
 
 .search-input {
