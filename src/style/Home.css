@@ -1,0 +1,46 @@
+.header {
+  align-items: center;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  gap: 10px;
+  height: 120px;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.header button {
+  cursor: pointer;
+  padding: 10px 20px;
+  position: absolute;
+  right: 1.6%;
+  top: 20%;
+}
+
+.main__container {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.search-and-cards__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+
+.products-cards__container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
