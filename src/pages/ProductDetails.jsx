@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
 import { saveProductToCart, saveProductsReviews,
   getProductReview } from '../services/localStorage';
+import '../style/ProductDetails.css';
 
 export default class ProductDetails extends Component {
   state = {
