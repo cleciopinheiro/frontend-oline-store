@@ -10,9 +10,9 @@ export default class ProductDetails extends Component {
   state = {
     productDetails: {},
     inputEmail: '',
-    textArea: '',
     inputRadio: '',
-    btnDisable: false,
+    inputDetail: '',
+    invalidInfo: false,
     reviewProduct: [],
   };
 
@@ -37,7 +37,7 @@ export default class ProductDetails extends Component {
     });
   };
 
-  verifyForm = () => {
+  validateForm = () => {
     const {
       match: {
         params: { id },
@@ -64,104 +64,114 @@ export default class ProductDetails extends Component {
   };
 
   render() {
-    const { productDetails: { thumbnail, title, price, condition },
-      productDetails, inputEmail, textArea, btnDisable, reviewProduct } = this.state;
+    const {
+      productDetails: { thumbnail, title, price, condition },
+      productDetails,
+      inputDetail,
+      inputEmail,
+      invalidInfo,
+      reviewProduct,
+    } = this.state;
     return (
-      <div className="product-details__container">
-        <h1>Detalhes do Produto</h1>
-        <h2 data-testid="product-detail-name">{title}</h2>
-        <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
-        <h3 data-testid="product-detail-price">{price}</h3>
-        <h5>{condition}</h5>
-        <Link to="/shoppingcart">
+      <>
+        <div className="product-details__container">
+          <h1>Detalhes do Produto</h1>
+          <h2 data-testid="product-detail-name">{title}</h2>
+          <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
+          <h3 data-testid="product-detail-price">{price}</h3>
+          <h5>{condition}</h5>
+          <Link to="/shoppingcart">
+            <button
+              type="button"
+              data-testid="shopping-cart-button"
+            >
+              Comprar
+            </button>
+          </Link>
           <button
+            onClick={ () => saveProductToCart(productDetails) }
             type="button"
-            data-testid="shopping-cart-button"
+            data-testid="product-detail-add-to-cart"
           >
-            Comprar
+            Adicionar ao carrinho
           </button>
-        </Link>
-        <button
-          data-testid="product-detail-add-to-cart"
-          type="button"
-          onClick={ () => saveProductToCart(productDetails) }
-        >
-          Adicionar ao carrinho
-
-        </button>
-
-        <form action="">
+        </div>
+        <div className="form-rating__container">
           <input
-            data-testid="product-detail-email"
-            type="email"
-            name="inputEmail"
-            id=""
             value={ inputEmail }
             onChange={ this.handleChange }
+            type="email"
+            name="inputEmail"
+            id="inputEmail"
+            placeholder="Email"
+            className="input-email"
+            data-testid="product-detail-email"
           />
-          <textarea
-            data-testid="product-detail-evaluation"
-            name="textArea"
-            id=""
-            value={ textArea }
-            onChange={ this.handleChange }
-          />
-          <label htmlFor="inputRadio">
+          <p>Avaliação</p>
+          <div className="input-radio__container">
             <input
+              onChange={ this.handleChange }
+              value="1"
+              type="radio"
+              name="inputRadio"
+              id="inputRadio"
               data-testid="1-rating"
+            />
+            <input
+              onChange={ this.handleChange }
+              value="2"
               type="radio"
               name="inputRadio"
               id="inputRadio"
-              value={ 1 }
-              onChange={ this.handleChange }
-            />
-
-            <input
               data-testid="2-rating"
+            />
+            <input
+              onChange={ this.handleChange }
+              value="3"
               type="radio"
               name="inputRadio"
               id="inputRadio"
-              value={ 2 }
-              onChange={ this.handleChange }
-            />
-
-            <input
               data-testid="3-rating"
+            />
+            <input
+              onChange={ this.handleChange }
+              value="4"
               type="radio"
               name="inputRadio"
               id="inputRadio"
-              value={ 3 }
-              onChange={ this.handleChange }
-            />
-
-            <input
               data-testid="4-rating"
-              type="radio"
-              name="inputRadio"
-              id="inputRadio"
-              value={ 4 }
-              onChange={ this.handleChange }
             />
-
             <input
-              data-testid="5-rating"
+              onChange={ this.handleChange }
+              value="5"
               type="radio"
               name="inputRadio"
               id="inputRadio"
-              value={ 5 }
-              onChange={ this.handleChange }
+              data-testid="5-rating"
             />
-          </label>
+          </div>
+          <textarea
+            value={ inputDetail }
+            onChange={ this.handleChange }
+            name="inputDetail"
+            id="inputDetail"
+            placeholder="Mensagem (opcional)"
+            data-testid="product-detail-evaluation"
+          />
           <button
-            data-testid="submit-review-btn"
+            onClick={ this.validateForm }
+            className="button-review"
             type="button"
-            onClick={ this.verifyForm }
+            data-testid="submit-review-btn"
           >
-            Avaliar
-
+            Enviar
           </button>
-        </form>
-        { btnDisable && <p data-testid="error-msg">Campos inválidos</p> }
+          {invalidInfo && (
+            <p className="invalid-info" data-testid="error-msg">
+              Campos inválidos
+            </p>
+          )}
+        </div>
         { reviewProduct.length > 0
         && reviewProduct.map((review, index) => (
           <div key={ index }>
@@ -170,7 +180,7 @@ export default class ProductDetails extends Component {
             <p data-testid="review-card-rating">{review.rating}</p>
           </div>
         ))}
-      </div>
+      </>
     );
   }
 }
