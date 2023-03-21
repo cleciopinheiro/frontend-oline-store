@@ -12,13 +12,20 @@ export default class ProductDetails extends Component {
     textArea: '',
     inputRadio: '',
     btnDisable: false,
+    reviewProduct: [],
   };
 
   async componentDidMount() {
-    const { match: { params: { id } } } = this.props;
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
+    const productReview = getProductReview(id);
     const data = await getProductById(id);
     this.setState({
       productDetails: data,
+      reviewProduct: productReview || [],
     });
   }
 
@@ -30,18 +37,34 @@ export default class ProductDetails extends Component {
   };
 
   verifyForm = () => {
-    const { inputEmail, textArea, inputRadio } = this.state;
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
+    const { inputEmail, inputRadio, inputDetail, invalidInfo } = this.state;
     const emailFormat = /^\S+@\S+\.\S+$/;
-
-    if (textArea.length === 0 || !inputEmail.match(emailFormat
-      || inputRadio.length === 0)) {
-      return this.setState({ btnDisable: true });
+    if (!inputEmail.match(emailFormat)
+      || inputRadio === '') { return this.setState({ invalidInfo: true }); }
+    this.setState({ invalidInfo: false });
+    if (invalidInfo === false) {
+      saveProductsReviews(
+        id,
+        {
+          email: inputEmail,
+          text: inputDetail,
+          rating: inputRadio },
+      );
+      const productReview = getProductReview(id);
+      this.setState({
+        inputEmail: '', inputDetail: '', inputRadio: '', reviewProduct: productReview,
+      });
     }
   };
 
   render() {
     const { productDetails: { thumbnail, title, price, condition },
-      productDetails, inputEmail, textArea, btnDisable } = this.state;
+      productDetails, inputEmail, textArea, btnDisable, reviewProduct } = this.state;
     return (
       <div className="product-details__container">
         <h1>Detalhes do Produto</h1>
@@ -138,11 +161,14 @@ export default class ProductDetails extends Component {
           </button>
         </form>
         { btnDisable && <p data-testid="error-msg">Campos inválidos</p> }
-        {/* <div>
-          {
-
-          }
-        </div> */}
+        { reviewProduct.length > 0
+        && reviewProduct.map((review, index) => (
+          <div key={ index }>
+            <h5 data-testid="review-card-email">{review.email}</h5>
+            <p data-testid="review-card-evaluation">{review.text}</p>
+            <p data-testid="review-card-rating">{review.rating}</p>
+          </div>
+        ))}
       </div>
     );
   }
